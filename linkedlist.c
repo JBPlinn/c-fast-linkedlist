@@ -20,9 +20,9 @@ Node * createnode(uint16_t data);
 
 Node * createnode(uint16_t data)
 {
-  Node * newNode = malloc(sizeof(Node));
+  Node * newNode = (Node *) malloc(sizeof(Node));
   
-  if(!newNode) 
+  if(newNode == NULL)
   {
     return NULL;
   }
@@ -35,9 +35,9 @@ Node * createnode(uint16_t data)
 
 List * ListMake()
 {
-  List * list = malloc(sizeof(List));
+  List * list = (List *) malloc(sizeof(List));
 
-  if(!list) 
+  if(list == NULL)
   {
     return NULL;
   }
