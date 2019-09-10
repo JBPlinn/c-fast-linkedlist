@@ -16,3 +16,6 @@ The test executable is `listtest`.
 Preallocate a predefined number of nodes for faster operations.
 
 
+## license
+
+Copyright JBPlinn - 2019
