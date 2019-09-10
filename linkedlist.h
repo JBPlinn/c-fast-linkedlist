@@ -21,10 +21,10 @@ typedef struct list List;
 List * ListMake();
 
 /// add a unique element to the list
-bool ListAdd(uint16_t data, List * list);
+bool ListAdd(List * list, uint16_t data);
 
 /// delete an element from the list
-bool ListDelete(uint16_t data, List * list);
+bool ListDelete(List * list, uint16_t data);
 
 /// reverse the list order
 void ListReverse(List * list);
@@ -38,5 +38,10 @@ unsigned int ListSize(List * list);
 /// display the list values
 void ListDisplay(List * list);
 
+/// dump list content into a string
+void ListGetPrintableContent( List *         list,
+                              char *         dest,
+                              char *         sep,
+                              unsigned int   limit);
 
 #endif

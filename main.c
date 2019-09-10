@@ -12,33 +12,33 @@ int main(void)
   List * list = ListMake();
 
   // add test:
-  ListAdd(1, list);
-  ListAdd(20, list);
-  ListAdd(2, list);
-  ListAdd(5, list);
-  ListAdd(8, list);
-  ListAdd(9, list);
-  ret = ListAdd(13, list);
+  ListAdd(list, 1);
+  ListAdd(list,20);
+  ListAdd(list,2);
+  ListAdd(list,5);
+  ListAdd(list,8);
+  ListAdd(list,9);
+  ret = ListAdd(list,13);
   printf("ListAdd(13)=%d\n", ret);
   printf("display=\n");
   ListDisplay(list);
 
   // add already present value:
-  ret = ListAdd(2, list);
+  ret = ListAdd(list, 2);
   printf("re-ListAdd(2)=%d\n", ret);
   printf("readd 2 - display=\n");
   ListDisplay(list);
 
   // delete test:
-  ret = ListDelete(2, list);
+  ret = ListDelete(list, 2);
   printf("delete(2) = %d - display=\n", ret);
 
   // delete already deleted value:
-  ret = ListDelete(2, list);
+  ret = ListDelete(list, 2);
   printf("re-delete(2) = %d - display=\n", ret);
 
   ListDisplay(list);
-  ListDelete(1, list);
+  ListDelete(list, 1);
   printf("delete 1 display=\n");
   ListDisplay(list);
 
@@ -47,16 +47,28 @@ int main(void)
   printf("Reversed: ");
   ListDisplay(list);
 
+  //dump content test:
+  char str[256];
+  char sep[]=",";
+
+  ListGetPrintableContent(list, str, sep, 10);
+
+  printf("get content full= [%s]\n", str);
+
+  ListGetPrintableContent(list, str, sep, 3);
+
+  printf("get content restricted= [%s]\n", str);
+
   // delete to empty test :
-  ret = ListDelete(13, list);
+  ret = ListDelete(list, 13);
   printf("delete 13 =%d\n", ret);
-  ret = ListDelete(9, list);
+  ret = ListDelete(list, 9);
    printf("delete  9 =%d\n", ret);  
-  ret = ListDelete(8, list);
+  ret = ListDelete(list, 8);
    printf("delete  8 =%d\n", ret);
-  ret = ListDelete(5, list);
+  ret = ListDelete(list, 5);
    printf("delete  5 =%d\n", ret);
-  ret = ListDelete(20, list);
+  ret = ListDelete(list, 20);
   printf("delete 20 =%d\n", ret);
 
   ListDisplay(list);

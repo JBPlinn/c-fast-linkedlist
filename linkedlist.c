@@ -65,7 +65,7 @@ List * ListMake()
  * @param   list pointer to the list
  * @return  true if insertion succeeded, false if the value already in the list
  */
-bool ListAdd(uint16_t data, List * list)
+bool ListAdd(List * list, uint16_t data)
 {
   bool ok = false;
   Node * current = NULL;
@@ -104,7 +104,7 @@ bool ListAdd(uint16_t data, List * list)
  * @param   list pointer to the list
  * @return  true if the data has been deleted, false if data is not present in the list
  */
-bool ListDelete(uint16_t data, List * list)
+bool ListDelete(List * list, uint16_t data)
 {
   bool ok = false;
   Node * current = list->head;            
@@ -212,4 +212,47 @@ void ListDisplay(List * list)
     printf("%d-", current->data);
   }
   printf("\n");
+}
+
+/**
+ * Dump the content of the list into a string.
+ *
+ * @param list pointer to the list
+ * @param dest the destination string (size is not checked)
+ * @param sep  separator string between values
+ */
+void ListGetPrintableContent( List *         list,
+                              char *         dest,
+                              char *         sep,
+                              unsigned int   limit)
+{
+   Node * current = list->head;
+   int stridx = 0; 
+   unsigned int cnt;
+
+   if(list->head == NULL)
+   {
+     stridx = sprintf(dest, "\0");
+     return;
+   }
+
+   for(cnt = 0; (cnt <= limit) && (current != NULL); current = current->next)
+   {
+     if((current->next != NULL) && (cnt < limit))
+     {
+        stridx = stridx + sprintf(dest + stridx, "%d%s", current->data, sep);
+      }
+     else
+     {
+        if(cnt == limit)
+        {
+           stridx = stridx + sprintf(dest + stridx, "...");
+        }
+        else
+        {
+           stridx = stridx + sprintf(dest + stridx, "%d", current->data);
+        }
+      }
+     cnt++;
+   }
 }
