@@ -228,9 +228,10 @@ void ListDisplay(List * list)
 /**
  * Dump the content of the list into a string.
  *
- * @param list pointer to the list
- * @param dest the destination string (size is not checked)
- * @param sep  separator string between values
+ * @param list  pointer to the list
+ * @param dest  the destination string (size is not checked)
+ * @param sep   separator string between values
+ * @param limit max number of elements printed, ... trailing after max exceeded
  */
 void ListGetPrintableContent( List *         list,
                               char *         dest,

@@ -79,7 +79,7 @@ int main(void)
 
  printf("-------------------------------\n");
 
-List * list2;
+  List * list2;
   list2 = ListMake();
 
   ret = ListAdd(list2,6000);
