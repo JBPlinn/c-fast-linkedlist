@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "linkedlist.h"
+#include <string.h>
 
 /**
  * Test programm for the linkedlist lib.
@@ -75,5 +76,36 @@ int main(void)
 
   // destroy test:
   ListDestroy(list);
+
+ printf("-------------------------------\n");
+
+List * list2;
+  list2 = ListMake();
+
+  ret = ListAdd(list2,6000);
+
+  bzero(str, 256);
+  ListGetPrintableContent(list2, str, sep, 10);
+
+  printf("add 6000 = %d - get content full= [%s]\n", ret, str);
+  
+  ListDisplay(list2);
+  ret = ListAdd(list2,6000);
+
+  bzero(str, 256);
+  ListGetPrintableContent(list2, str, sep, 10);
+  printf("readd 6000 = %d - get content full= [%s]\n", ret, str);
+  ListDisplay(list2);
+  
+  ret = ListAdd(list2,6000);
+  bzero(str, 256);
+  ListGetPrintableContent(list2, str, sep, 10);
+
+  printf("readd 6000 = %d - get content full= [%s]\n", ret, str);
+  ListDisplay(list2);
+
+  ListDestroy(list2);
+
+
   return 0;
 }

@@ -69,6 +69,7 @@ bool ListAdd(List * list, uint16_t data)
 {
   bool ok = false;
   Node * current = NULL;
+  Node * next = NULL;
   
   if(list->head == NULL)
   {
@@ -78,17 +79,24 @@ bool ListAdd(List * list, uint16_t data)
   }
   else 
   {
-    current = list->head; 
+    current = list->head; // at beginning
+    next = current;       //same slot for 1st round
     
-    while((current->next != NULL))
+    do
     {
+      current = next;  // advance one step after 1st round
+
       if(current->data == data)
       {
         ok = false;
         return ok;
       }
-      current = current->next;
-    }
+
+      next = current->next; // beginning with 2nd loop advance one step
+
+    } 
+    while(next != NULL);
+    
     current->next = createnode(data);
     list->list_size++;
     ok = true;
@@ -167,15 +175,18 @@ void ListDestroy(List * list)
 {
   Node * current = list->head;
   Node * next = current;
-  
-  while(current != NULL)
+
+  if(list != NULL)
   {
-    next = current->next;
-    free(current);
-    current = next;
+    while(current != NULL)
+    {
+      next = current->next;
+      free(current);
+      current = next;
+    }
+    
+    free(list);
   }
-  
-  free(list);
 }
 
 /**
