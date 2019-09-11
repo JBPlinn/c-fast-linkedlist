@@ -7,10 +7,17 @@ Well suited for embedded processors with limited power.
 
 ## compile
 
+Requires:
+* cmake version >= 3.0
+* gcc >= 4.4
+
 ```bash
 cmake .
 make
 ```
+to reset build and start from scratch:
+
+`./init_all.sh`
 
 The test executable is `listtest`.
 
