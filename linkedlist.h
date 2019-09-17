@@ -17,6 +17,8 @@ typedef struct node Node;
 
 typedef struct list List;
 
+typedef struct iter Iter;
+
 /// create the list
 List * ListMake();
 
@@ -43,5 +45,17 @@ void ListGetPrintableContent( List *         list,
                               char *         dest,
                               char *         sep,
                               unsigned int   limit);
+
+/// start iteration through the list
+Iter * ListIterStart(List * list);
+
+/// advance one step
+bool ListIterNext(Iter * iter);
+
+/// get value at iterator
+uint16_t ListGetValue(Iter * iter);
+
+/// stop and destroy iterator
+void ListIterStop(Iter * iter);
 
 #endif

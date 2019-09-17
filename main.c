@@ -106,6 +106,50 @@ int main(void)
 
   ListDestroy(list2);
 
+  printf("-------------------------------\n");
+
+  List * list3;
+   list3 = ListMake();
+
+   ListAdd(list3, 1);
+   ListAdd(list3,20);
+   ListAdd(list3,2);
+   ListAdd(list3,5);
+
+   ListDisplay(list3);
+
+   Iter * pIterator;
+   pIterator = ListIterStart(list3);
+
+   uint16_t val;
+
+   val = ListGetValue(pIterator);
+   printf("iter 1 = %d\n", val);
+   ret = ListIterNext(pIterator);
+   printf("next = %d\n", ret);
+
+   val = ListGetValue(pIterator);
+   printf("iter 2 = %d\n", val);
+   ret = ListIterNext(pIterator);
+   printf("next = %d\n", ret);
+
+   val = ListGetValue(pIterator);
+   printf("iter 3 = %d\n", val);
+   ret = ListIterNext(pIterator);
+   printf("next = %d\n", ret);
+
+   val = ListGetValue(pIterator);
+   printf("iter 4 = %d\n", val);
+   ret = ListIterNext(pIterator);
+   printf("next = %d\n", ret);
+
+   val = ListGetValue(pIterator);
+    printf("iter 5 = %d\n", val);
+    ret = ListIterNext(pIterator);
+    printf("next = %d\n", ret);
+
+    ListIterStop(pIterator);
+   ListDestroy(list3);
 
   return 0;
 }

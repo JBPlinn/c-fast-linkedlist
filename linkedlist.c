@@ -15,7 +15,11 @@ struct list
   unsigned int list_size;
 };
 
-
+struct iter
+{
+   List * curlist;
+   Node * cursor;
+};
 /**
  * Single node creation with (slow) memory allocation.
  *
@@ -268,3 +272,85 @@ void ListGetPrintableContent( List *         list,
      cnt++;
    }
 }
+
+/**
+ * Set the iterator to the beggining of the list
+ *
+ * @param list pointer to the list
+ * @return     pointer to a newly created iterator, NULL on error
+ */
+Iter * ListIterStart(List * list)
+{
+   Iter * iter = NULL;
+
+   iter = (Iter *) malloc(sizeof(Iter));
+
+   if(iter != NULL)
+   {
+      iter->curlist = NULL;
+      iter->cursor = NULL;
+
+      if(list != NULL)
+      {
+         iter->curlist = list;
+         iter->cursor = list->head;
+      }
+   }
+   return iter;
+}
+
+/**
+ * destroy the iterator.
+ *
+ * @param iter pointer to an existing iterator
+ */
+void ListIterStop(Iter * iter)
+{
+   if(iter != NULL)
+   {
+      free(iter);
+   }
+}
+
+/**
+ * advance one step in the list
+ *
+ * @param iter pointer to the iterator
+ * @return     true if iter points to a valid succesir, false otherwise
+ */
+bool ListIterNext(Iter * iter)
+{
+   bool valexists = false;
+
+   if((iter != NULL) && (iter->curlist != NULL) && (iter->cursor != NULL))
+   {
+      if(iter->cursor->next != NULL)
+      {
+         iter->cursor = iter->cursor->next;
+         valexists = true;
+      }
+   }
+
+   return valexists;
+}
+
+/**
+ * Return the value for the current iterator
+ *
+ * @param iter pointer to the iterator
+ * @return     value if present, 0 otherwise
+ */
+uint16_t ListGetValue(Iter * iter)
+{
+   uint16_t val = 0;
+
+   if(iter != NULL && iter->cursor != NULL)
+   {
+      val = iter->cursor->data;
+   }
+
+   return val;
+}
+
+
+
